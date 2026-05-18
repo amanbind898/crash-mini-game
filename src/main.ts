@@ -1,4 +1,4 @@
-import { Application, Assets, Sprite, BitmapText } from 'pixi.js'
+import { Application, Assets, Sprite, BitmapText ,Texture,AnimatedSprite} from 'pixi.js'
 import { Balance } from './Balance'
 
 (async () => {
@@ -27,7 +27,7 @@ import { Balance } from './Balance'
   // ---------------- PIXI SETUP ----------------
   const canvasContainer = document.getElementById('canvas') as HTMLElement;
   const app = new Application();
-  globalThis.__PIXI_APP__ = app;
+  // globalThis.__PIXI_APP__ = app;
 
   await app.init({
     resizeTo: canvasContainer,
@@ -62,12 +62,47 @@ import { Balance } from './Balance'
   airplane.x = 0;
   airplane.y = app.screen.height;
   app.stage.addChild(airplane);
+// explosion
+await Assets.load('https://pixijs.com/assets/spritesheet/mc.json');
 
+const explosionTextures:Array<Texture> = [];
+
+for (let i = 0; i < 26; i++) {
+  explosionTextures.push(
+    Texture.from(
+      `Explosion_Sequence_A ${i + 1}.png`
+    )
+  );
+}
+
+// explosion function
+function createExplosion(x:number, y:number){
+
+    const explosion = new AnimatedSprite(
+        explosionTextures
+    );
+
+    explosion.position.set(x,y);
+    explosion.anchor.set(0.5);
+    explosion.scale.set(0.7);
+    explosion.animationSpeed = 0.5;
+    explosion.loop = false;
+    explosion.autoUpdate = true;
+
+    app.stage.addChild(explosion);
+
+    explosion.gotoAndPlay(0);
+
+    explosion.onComplete = ()=>{
+        app.stage.removeChild(explosion);
+        explosion.destroy();
+    };
+}
   // ---------------- GAME LOOP ----------------
   app.ticker.start(); 
 
   app.ticker.add(() => {
-    if (!gameStart || isCrashed) return;
+    if (!gameStart ) return;
 
     const targetHeight = app.screen.height / 2;
     const maxRotation = Math.PI / 7;
@@ -89,13 +124,20 @@ import { Balance } from './Balance'
     }
 
     // crash condition
-    if (multiplier >= randomCrash) {
-      isCrashed = true;
-      gameStart = false;
+   if (multiplier >= randomCrash) {
 
-      bitmapFontText.text = ">>>> CRASH <<<<";
-      return;
-    }
+    createExplosion(
+        airplane.x,
+        airplane.y
+    );
+
+    isCrashed = true;
+    gameStart = false;
+
+    bitmapFontText.text = ">>>> CRASH <<<<";
+
+    return;
+}
 
     multiplier += 0.02;
     bitmapFontText.text = multiplier.toFixed(2) + "x";
