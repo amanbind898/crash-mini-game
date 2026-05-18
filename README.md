@@ -43,7 +43,7 @@ src/
 ## Game Mechanics
 
 - **Multiplier**: Increases by 0.02 each frame
-- **Crash**: Random value between 2.0x - 12.0x
+- **Crash**: Random value between 0x - 20.0x
 - **Balance**: Track bets and winnings
 - **Countdown**: 3-second countdown before each round
 
