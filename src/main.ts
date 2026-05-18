@@ -118,7 +118,7 @@ import { Balance } from './Balance'
       airplane.y = app.screen.height;
       airplane.rotation = 0;
 
-      randomCrash = Math.random() * 10 + 2;
+      randomCrash = Math.random() * 20;
 
       // countdown 
       for (let i = 3; i >= 1; i--) {
