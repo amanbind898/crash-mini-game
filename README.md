@@ -1,6 +1,7 @@
 # Crash Mini Game 🎮
 
 A fast-paced crash betting game built with **PixiJS** and **TypeScript**. Experience the thrill of placing bets, watching a multiplier climb, and deciding when to cash out before the airplane crashes!
+<img width="1363" height="631" alt="image" src="https://github.com/user-attachments/assets/a7f4e437-771d-4b38-a14b-6ce496a61cdf" />
 
 ## Features
 
@@ -84,37 +85,8 @@ crash-mini-game/
 | **PixiJS** (v8.18.1) | 2D rendering engine |
 | **TypeScript** | Language (v6.0) |
 | **Vite** (v8.0) | Build tool & dev server |
-| **Webpack** | Module bundling |
 
-## Game Logic
 
-### Game States
-- **Idle**: Waiting for player to place bet
-- **Playing**: Airplane in flight, multiplier increasing
-- **Crashed**: Airplane crashed, player loses
-- **CashedOut**: Player cashed out successfully
-
-### Multiplier Calculation
-The multiplier increases continuously during gameplay. The crash happens at a random point, and the player must decide the optimal moment to cashout.
-
-## Learning Outcomes
-
-This project was built as a learning experience for:
-- ✅ Game loop implementation
-- ✅ Async timing and scheduling
-- ✅ UI/UX interaction in game development
-- ✅ State management in real-time applications
-- ✅ Performance optimization with PixiJS
-
-## Future Enhancements
-
-- [ ] Leaderboard system
-- [ ] Sound effects and background music
-- [ ] Multiple betting strategies
-- [ ] Animation improvements
-- [ ] Mobile responsiveness
-- [ ] Multiplayer features
-- [ ] Persistent stats/history
 
 ## License
 
